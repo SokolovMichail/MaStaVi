@@ -1,5 +1,4 @@
 ﻿using System;
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -42,23 +41,25 @@ namespace SorterModule
             List<double> tosort = null;
             tosort = FormList(US);
             tosort.Distinct();
-            tosort.Sort();
-            if (tosort.Count <= 0)
+            tosort.OrderBy(q => q);
+            if (tosort.Count <= 1)
             {
-                throw new Exception("0 elements");
+
             }
             else
             {
-                int n1 = Math.Min((int)Math.Floor((decimal)(tosort.Count() / n)), tosort.Count() - 1);
+                int n1 = Math.Min((int)Math.Floor((decimal)(tosort.Count() / n)), tosort.Count());
+
                 List<Border> res = new List<Border> { };
                 int s = 0;
                 int e = n1;
                 while (e <= tosort.Count)
                 {
-                    Dividers.Add(new Border(tosort[s], tosort[Math.Min(e, tosort.Count - 1)]));
+                    Dividers.Add(new Border(tosort[s], tosort[Math.Min(e,tosort.Count-1)]));
                     s = e; e = e + n1;
                 }
-                s = 0;
+                Dividers[0] = new Border(double.MinValue, Dividers[0].min);
+                Dividers[Dividers.Count - 1] = new Border(Dividers[Dividers.Count - 1].min, double.MaxValue);
             }
 
         }
@@ -75,10 +76,10 @@ namespace SorterModule
             if (Dividers.Count != 0)
             { Astep = (215 / Dividers.Count); }
             else
-                Astep = 0;
+              Astep = 0;
         }
 
-        static void CBstep(int Bstart, int Bend)
+       static void CBstep(int Bstart, int Bend)
         {
             if (Dividers.Count != 0)
             { Bstep = (Bend - Bstart) / Dividers.Count; }
@@ -108,7 +109,7 @@ namespace SorterModule
         
         }*/
 
-        public static int GetColorIndex(double q)
+         public static int GetColorIndex(double q)
         {
             int z = 0;
             foreach (var p in Dividers)
@@ -119,7 +120,6 @@ namespace SorterModule
                     break;
                 }
             }
-
             return z;
 
         }
@@ -135,7 +135,7 @@ namespace SorterModule
                     break;
                 }
             }
-            return Math.Min(40 + (z * Astep), 255);
+            return Math.Min(40+(z*Astep),255);
         }
 
         /*public static List<int> GetSplitList( int b, int e)//For paint
@@ -167,11 +167,11 @@ namespace SorterModule
 
         public static double[] FormForLegend()
         {
-            double[] q = new double[Dividers.Count + 1];
+            double[] q = new double[Dividers.Count+1];
             q[0] = Dividers[0].min;
-            for (int i = 0; i < Dividers.Count; i++)
+            for(int i = 0; i<Dividers.Count; i++)
             {
-                q[i + 1] = Dividers[i].max;
+                q[i+1] = Dividers[i].max;
             }
             return q;
         }
@@ -182,17 +182,16 @@ namespace SorterModule
             int[] r = new int[Dividers.Count];
             int[] g = new int[Dividers.Count];
             int[] b = new int[Dividers.Count];
-            int stop = Math.Min(Dividers.Count, Project.DialogSettings.red.Length);
             if (Project.DialogSettings.blue.Length != 1)
             {
-                for (int i = 0; i < (stop); i++)
+                for (int i = 0; i < Dividers.Count; i++)
                 {
                     a[i] = 255;
                     r[i] = Project.DialogSettings.red[i];
                     g[i] = Project.DialogSettings.green[i];
                     b[i] = Project.DialogSettings.blue[i];
                 }
-
+              
             }
             else
             {
@@ -203,14 +202,14 @@ namespace SorterModule
                     b[i] = Project.DialogSettings.blue[0];
                     a[i] = Math.Min(40 + Astep * i, 255);
                 }
-
+                
             }
             return new Tuple<int[], int[], int[], int[]>(a, r, g, b);
         }
 
         private static string TryFind(string s, InputModule.InputText.KeyValues KeyVals)//A stripped-down auto corrector. Lowercases and exchanges " " on "_"
         {
-            string s1 = s.Replace(" ", "_");
+            string s1= s.Replace(" ", "_");
             s1 = s1.ToLower();
             string res = "";
             if (KeyVals.Dict.ContainsKey(s1))
@@ -222,18 +221,18 @@ namespace SorterModule
         }
 
         //Работает. Пропускает неопределенные значения
-        public static List<Tuple<int[], int[], int[], int[], int[], int[]>> ToDrawer(Dictionary<string, Dictionary<string, double>> US, InputModule.InputText.KeyValues KeyVals, bool Gradient)
+        public static List<Tuple<int[],int[],int[],int[],int[],int[]>> ToDrawer(Dictionary<string, Dictionary<string, double>> US, InputModule.InputText.KeyValues KeyVals,bool Gradient)
         {
-            // CRstep(Rstart, Rend);
-            // CBstep(Bstart, Bend);
+           // CRstep(Rstart, Rend);
+           // CBstep(Bstart, Bend);
             //CGstep(Gstart, Gend);
             int n = Project.Font1.x;
             if (n == 0)
             {
                 throw new Exception();
             }
-            List<Tuple<int[], int[], int[], int[], int[], int[]>> res = new List<Tuple<int[], int[], int[], int[], int[], int[]>> { };
-            if ((Dividers.Count == 0) && (Project.DialogSettings.AutoGen))
+            List<Tuple<int[], int[], int[], int[], int[],int[]>> res = new List<Tuple<int[],int[], int[], int[], int[], int[]>> { };       
+            if ((Dividers.Count == 0)&&(Project.DialogSettings.AutoGen))
             {
                 GenerateDividers(US, n);
             }
@@ -246,7 +245,7 @@ namespace SorterModule
             CAstep();
             foreach (var item in US)
             {
-
+                
                 int ser = (Convert.ToInt32(item.Key));
                 int[] q1 = new int[US[item.Key].Count];
                 int[] q2 = new int[US[item.Key].Count];
@@ -277,7 +276,7 @@ namespace SorterModule
                             {
                                 q1[i] = KeyVals.Dict[s1].X;
                                 q2[i] = KeyVals.Dict[s1].Y;
-                                int f = Math.Min(GetColorIndex(item1.Value), Project.DialogSettings.red.Length - 1);
+                                int f = GetColorIndex(item1.Value);
                                 q3[i] = 255;
                                 q4[i] = Project.DialogSettings.red[f];
                                 q5[i] = Project.DialogSettings.green[f];
@@ -333,7 +332,7 @@ namespace SorterModule
                     }
                     i += 1;
                 }
-                res.Add(new Tuple<int[], int[], int[], int[], int[], int[]>(q1, q2, q3, q4, q5, q6));
+                res.Add(new Tuple<int[], int[], int[], int[], int[],int[]>(q1, q2, q3, q4, q5,q6));
             }
 
             return res;

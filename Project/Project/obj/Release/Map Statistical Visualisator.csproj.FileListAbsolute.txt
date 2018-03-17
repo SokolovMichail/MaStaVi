@@ -50,4 +50,3 @@ C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\obj\Release\
 C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\obj\Release\Map Statistical Visualisator.csproj.CoreCompileInputs.cache
 C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\obj\Release\Map Statistical Visualisator.exe
 C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\obj\Release\Map Statistical Visualisator.pdb
-D:\Gits2\MaStaVi\Project\Project\bin\Release\DrawMap.pdb
