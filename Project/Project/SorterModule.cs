@@ -41,15 +41,14 @@ namespace SorterModule
             List<double> tosort = null;
             tosort = FormList(US);
             tosort.Distinct();
-            tosort.OrderBy(q => q);
-            if (tosort.Count <= 1)
+            tosort.Sort();
+            if (tosort.Count <= 0)
             {
-
+                throw new Exception("0 elements");
             }
             else
             {
-                int n1 = Math.Min((int)Math.Floor((decimal)(tosort.Count() / n)), tosort.Count());
-
+                int n1 = Math.Min((int)Math.Floor((decimal)(tosort.Count() / n)), tosort.Count()-1);
                 List<Border> res = new List<Border> { };
                 int s = 0;
                 int e = n1;
@@ -58,8 +57,7 @@ namespace SorterModule
                     Dividers.Add(new Border(tosort[s], tosort[Math.Min(e,tosort.Count-1)]));
                     s = e; e = e + n1;
                 }
-                Dividers[0] = new Border(double.MinValue, Dividers[0].min);
-                Dividers[Dividers.Count - 1] = new Border(Dividers[Dividers.Count - 1].min, double.MaxValue);
+                s = 0;
             }
 
         }
@@ -120,6 +118,7 @@ namespace SorterModule
                     break;
                 }
             }
+
             return z;
 
         }
@@ -182,9 +181,10 @@ namespace SorterModule
             int[] r = new int[Dividers.Count];
             int[] g = new int[Dividers.Count];
             int[] b = new int[Dividers.Count];
+            int stop = Math.Min(Dividers.Count, Project.DialogSettings.red.Length);
             if (Project.DialogSettings.blue.Length != 1)
             {
-                for (int i = 0; i < Dividers.Count; i++)
+                for (int i = 0; i < (stop); i++)
                 {
                     a[i] = 255;
                     r[i] = Project.DialogSettings.red[i];
@@ -276,7 +276,7 @@ namespace SorterModule
                             {
                                 q1[i] = KeyVals.Dict[s1].X;
                                 q2[i] = KeyVals.Dict[s1].Y;
-                                int f = GetColorIndex(item1.Value);
+                                int f = Math.Min(GetColorIndex(item1.Value), Project.DialogSettings.red.Length-1);
                                 q3[i] = 255;
                                 q4[i] = Project.DialogSettings.red[f];
                                 q5[i] = Project.DialogSettings.green[f];
