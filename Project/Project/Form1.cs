@@ -28,14 +28,12 @@ namespace Project
         {
             InitializeComponent();
             AddOwnedForm(DialSet);
-            
         }
 
 		private void Font1_Load(object sender, EventArgs e)
         {
             
             MainPicture.Image = Properties.Resources.map5;
-            LegendPicture.Image = Properties.Resources.Legend;
             this.Icon = Properties.Resources.icon;
             
         }
@@ -51,25 +49,21 @@ namespace Project
         }*/
         private void Picture2D_Click(object sender, EventArgs e)
         {
-          //  try
-          //формат ARGB
-            {
-                if (int.TryParse(DialSet.Drob.Text, out x));
-                InputModule.InputText.KeyValues PictureMap = InputModule.InputText.EnterValues();
-                Dictionary < string, Dictionary < string, double>> q = InputModule.Input.RunInputModule(PathToFile, PictureMap);
-                List<Tuple<int[], int[], int[], int[], int[],int[]>> lv = SorterModule.Sorter.ToDrawer(q, PictureMap,(DialogSettings.blue.Length ==1));
-                string s = "mapsnkeys//map5.png";
-                GraphABC.Picture p = new GraphABC.Picture(s);
-                DrawMap.DrawMap.PaintMap(s, lv.First().Item3, lv.First().Item4, lv.First().Item5, lv.First().Item6, lv.First().Item1, lv.First().Item2);
-                MainPicture.Image = Image.FromFile("Map stats.png");
-                label1.Text = InputModule.Input.nam;
-                double[] a = SorterModule.Sorter.FormForLegend();
-                Tuple<int[], int[], int[], int[]> ffl = SorterModule.Sorter.FormForLegendColors(DialogSettings.blue.Length == 1);
-                DrawMap.DrawMap.LegendOfFile(ffl.Item1,ffl.Item2,ffl.Item3,ffl.Item4,a);
-                LegendPicture.Load("LegendOfFile.png");
-
-
-            }
+			//  try
+			//формат ARGB
+			if (DialogSettings.red.Length > 0 && int.TryParse(DialSet.Drob.Text, out x))
+			{
+				InputModule.InputText.KeyValues PictureMap = InputModule.InputText.EnterValues();
+				Dictionary<string, Dictionary<string, double>> q = InputModule.Input.RunInputModule(PathToFile, PictureMap);
+				List<Tuple<int[], int[], int[], int[], int[], int[]>> lv = SorterModule.Sorter.ToDrawer(q, PictureMap, DialSet.Gradient.Checked);
+				var bitmap = DM.PaintMap(Properties.Resources.map5, lv.First().Item3, lv.First().Item4, lv.First().Item5, lv.First().Item6, lv.First().Item1, lv.First().Item2);
+				MainPicture.Image = bitmap;
+				label1.Text = InputModule.Input.nam;
+				double[] a = SorterModule.Sorter.FormForLegend();
+				Tuple<int[], int[], int[], int[]> ffl = SorterModule.Sorter.FormForLegendColors(DialogSettings.blue.Length == 1);
+				bitmap = DM.PaintLegend(ffl.Item1, ffl.Item2, ffl.Item3, ffl.Item4, a);
+				LegendPicture.Image = bitmap;
+			}
             /*catch (Exception exception)
             {
                 MessageBox.Show("Не верные данные " + exception.Message);

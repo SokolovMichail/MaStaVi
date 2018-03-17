@@ -1,15 +1,11 @@
-library DrawMap;
+п»їlibrary DrawMap;
 
 uses graphABC;
-///Выводим нарисованную карту
+///Р’С‹РІРѕРґРёРј РЅР°СЂРёСЃРѕРІР°РЅРЅСѓСЋ РєР°СЂС‚Сѓ
 function PaintMap(s: string; a:array of integer;c1: array of integer; c2: array of integer; c3: array of integer; x: array of integer; y: array of integer):string;
 begin
-  //s - имя карты на ввод
-  //p - карта
-  var p:=new picture(s);
-  window.Width :=p.width;
-  window.Height:=p.height;
-  p.draw(0,0);
+  //s - РёРјСЏ РєР°СЂС‚С‹ РЅР° РІРІРѕРґ
+  window.Load(s);
   for var i:=0 to c1.Length-1 do
     floodfill(x[i],y[i], ARGB(a[i],c1[i],c2[i],c3[i]));
   var NameFile:='Map stats.png';
@@ -17,18 +13,18 @@ begin
   result:=NameFile;
 end;
 
-///Выдает длину легенды
+///Р’С‹РґР°РµС‚ РґР»РёРЅСѓ Р»РµРіРµРЅРґС‹
 function LengthOfLegend(c1:array of integer):integer;
 begin
-  result:=880;//Установил, как наибольшую длину легенды
+  result:=880;//РЈСЃС‚Р°РЅРѕРІРёР», РєР°Рє РЅР°РёР±РѕР»СЊС€СѓСЋ РґР»РёРЅСѓ Р»РµРіРµРЅРґС‹
   if c1.Length<11 then
     if c1.Length<=5 then
-      result:=400//Меньше делать размер смысла нет
+      result:=400//РњРµРЅСЊС€Рµ РґРµР»Р°С‚СЊ СЂР°Р·РјРµСЂ СЃРјС‹СЃР»Р° РЅРµС‚
     else
       result:=400 + (c1.Length-5)*80;
 end;
 
-///Обрабатываю числа (1 000 000 >>> 1 000к)
+///РћР±СЂР°Р±Р°С‚С‹РІР°СЋ С‡РёСЃР»Р° (1 000 000 >>> 1 000Рє)
 function NumbersOfLegend(a:real):string;
 begin
   var b:=0;
@@ -48,16 +44,16 @@ begin
   result:=l;
 end;
 
-///Рисует легенду и передает её имя
+///Р РёСЃСѓРµС‚ Р»РµРіРµРЅРґСѓ Рё РїРµСЂРµРґР°РµС‚ РµС‘ РёРјСЏ
 function PaintLegend(al:array of integer; c1: array of integer; c2: array of integer; c3: array of integer; a: array of real):picture;
 begin
-  var w:=LengthOfLegend(c1);//длина легенды
-  var h:=35;                //высота легеды
-  var N := c1.Length;       //кол-во цветов
-  var MyScale:= w div N;    //единица длины нашей шкалы
-  Result := new Picture(w, 45);//будущая картинка
+  var w:=LengthOfLegend(c1);//РґР»РёРЅР° Р»РµРіРµРЅРґС‹
+  var h:=35;                //РІС‹СЃРѕС‚Р° Р»РµРіРµРґС‹
+  var N := c1.Length;       //РєРѕР»-РІРѕ С†РІРµС‚РѕРІ
+  var MyScale:= w div N;    //РµРґРёРЅРёС†Р° РґР»РёРЅС‹ РЅР°С€РµР№ С€РєР°Р»С‹
+  Result := new Picture(w, 45);//Р±СѓРґСѓС‰Р°СЏ РєР°СЂС‚РёРЅРєР°
   font.Size := 9;
-  //Прямоугольники
+  //РџСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєРё
   for var i := 0 to N - 1 do
   begin
     Brush.Color := ARGB(al[i],c1[i],c2[i],c3[i]);
@@ -65,20 +61,20 @@ begin
   end;
   Brush.Color:=color.White;
   
-  //Числа
-  var t:=NumbersOfLegend(a[0]); //Число для легенды снизу
-  result.TextOut(0, (h div 3) * 2 + 5, t);//(h div 3) * 2 + 5. Прибавляю 5, чтоб было чуть ниже легенды
+  //Р§РёСЃР»Р°
+  var t:=NumbersOfLegend(a[0]); //Р§РёСЃР»Рѕ РґР»СЏ Р»РµРіРµРЅРґС‹ СЃРЅРёР·Сѓ
+  result.TextOut(0, (h div 3) * 2 + 5, t);//(h div 3) * 2 + 5. РџСЂРёР±Р°РІР»СЏСЋ 5, С‡С‚РѕР± Р±С‹Р»Рѕ С‡СѓС‚СЊ РЅРёР¶Рµ Р»РµРіРµРЅРґС‹
   for var i := 1 to N - 1 do
   begin
-    t:=NumbersOfLegend(a[i]); //Число для легенды снизу
-    result.TextOut(i * MyScale - (TextWidth(t) div 2), (h div 3) * 2 + 5, t);//Также прибавляю 5
-    //- (TextWidth(t) div 2) Чтобы число под легендой было по центру деление
+    t:=NumbersOfLegend(a[i]); //Р§РёСЃР»Рѕ РґР»СЏ Р»РµРіРµРЅРґС‹ СЃРЅРёР·Сѓ
+    result.TextOut(i * MyScale - (TextWidth(t) div 2), (h div 3) * 2 + 5, t);//РўР°РєР¶Рµ РїСЂРёР±Р°РІР»СЏСЋ 5
+    //- (TextWidth(t) div 2) Р§С‚РѕР±С‹ С‡РёСЃР»Рѕ РїРѕРґ Р»РµРіРµРЅРґРѕР№ Р±С‹Р»Рѕ РїРѕ С†РµРЅС‚СЂСѓ РґРµР»РµРЅРёРµ
   end;
   t:=NumbersOfLegend(a[n-1]);
   result.TextOut(MyScale*N - (TextWidth(t)), (h div 3) * 2 + 5, t);
 end;
 
-///Сохраняет картинку в отдельном файле
+///РЎРѕС…СЂР°РЅСЏРµС‚ РєР°СЂС‚РёРЅРєСѓ РІ РѕС‚РґРµР»СЊРЅРѕРј С„Р°Р№Р»Рµ
 function LegendOfFile(al:array of integer; c1: array of integer; c2: array of integer; c3: array of integer; a: array of real):string;
 begin
   var p:=PaintLegend(al,c1,c2,c3,a);
@@ -86,18 +82,18 @@ begin
   window.Height:=p.height;
   p.draw(0,0);
   //----------
-  var w:=LengthOfLegend(c1);//длина легенды
-  var h:=35;                //высота легеды
-  var N := c1.Length;       //кол-во цветов
-  var MyScale:= w div N;    //единица длины нашей шкалы
+  var w:=LengthOfLegend(c1);//РґР»РёРЅР° Р»РµРіРµРЅРґС‹
+  var h:=35;                //РІС‹СЃРѕС‚Р° Р»РµРіРµРґС‹
+  var N := c1.Length;       //РєРѕР»-РІРѕ С†РІРµС‚РѕРІ
+  var MyScale:= w div N;    //РµРґРёРЅРёС†Р° РґР»РёРЅС‹ РЅР°С€РµР№ С€РєР°Р»С‹
   font.Size := 9;
-  //Линии
-  //горизонтальные
+  //Р›РёРЅРёРё
+  //РІРµСЂС‚РёРєР°Р»СЊРЅС‹Рµ
   for var i := 0 to N do
   begin
     Line(i*MyScale, 0,i*MyScale, 22);
   end;
-  //вертикальные
+  //РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅС‹Рµ
   Line(0,0,MyScale*N,0);
   Line(0,22,MyScale*N,22);
   //-----------

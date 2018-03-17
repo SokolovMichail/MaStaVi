@@ -15,11 +15,11 @@ namespace Project
         public static bool AutoGen = false;
         PictureBox[] colorpictures = new PictureBox[0];
         Button[] colorbuttons = new Button[0];
-		public static int[] red;
-		public static int[] green;
-		public static int[] blue;
+		public static int[] red = new int[0];
+		public static int[] green = new int[0];
+		public static int[] blue = new int[0];
 
-        bool CheckActive = false;
+		bool CheckActive = false;
         public DialogSettings()
         {
             InitializeComponent();
@@ -28,15 +28,14 @@ namespace Project
 
         public void GenColorsPalitra(int count)
         {
-
             Array.Resize(ref colorpictures, count);
             Array.Resize(ref colorbuttons, count);
 			Array.Resize(ref red, count);
 			Array.Resize(ref green, count);
 			Array.Resize(ref blue, count);
 
-			Point p = new Point(115, 95);
-            Point b = new Point(13, 94);
+			Point p = new Point(115, 104);
+            Point b = new Point(13, 103);
 
             Random r = new Random();
             
@@ -49,7 +48,6 @@ namespace Project
                 colorpictures[i].Visible = false;
                 p = new Point(p.X, p.Y + 26);
                 colorpictures[i].BackColor = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
-                colorpictures[i].Tag = i;
                 Controls.Add(colorpictures[i]);
 
                 colorbuttons[i] = new Button();
@@ -154,12 +152,26 @@ namespace Project
             if (int.TryParse(num,out a))
             {
                 if (MyDialog.ShowDialog() == DialogResult.OK)
-                    colorpictures[a-1].BackColor = MyDialog.Color;
+				{
+					colorpictures[a - 1].BackColor = MyDialog.Color;
+					Color c = colorpictures[a - 1].BackColor;
+					red[a - 1] = c.R;
+					green[a - 1] = c.G;
+					blue[a - 1] = c.B;
+				}
+                    
             }   
             else
                 if (int.TryParse(num[0].ToString(), out a))
                     if (MyDialog.ShowDialog() == DialogResult.OK)
-                        colorpictures[a-1].BackColor = MyDialog.Color;
+				{
+					colorpictures[a - 1].BackColor = MyDialog.Color;
+					Color c = colorpictures[a - 1].BackColor;
+					red[a - 1] = c.R;
+					green[a - 1] = c.G;
+					blue[a - 1] = c.B;
+				}
+                        
 
         }
 
