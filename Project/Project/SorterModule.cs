@@ -55,7 +55,7 @@ namespace SorterModule
                 int e = n1;
                 while (e <= tosort.Count)
                 {
-                    Dividers.Add(new Border(tosort[s], tosort[e]));
+                    Dividers.Add(new Border(tosort[s], tosort[Math.Min(e,tosort.Count-1)]));
                     s = e; e = e + n1;
                 }
                 Dividers[0] = new Border(double.MinValue, Dividers[0].min);
@@ -182,15 +182,16 @@ namespace SorterModule
             int[] r = new int[Dividers.Count];
             int[] g = new int[Dividers.Count];
             int[] b = new int[Dividers.Count];
-            if (isGrad)
+            if (Project.DialogSettings.blue.Length != 1)
             {
                 for (int i = 0; i < Dividers.Count; i++)
                 {
                     a[i] = 255;
+                    r[i] = Project.DialogSettings.red[i];
+                    g[i] = Project.DialogSettings.green[i];
+                    b[i] = Project.DialogSettings.blue[i];
                 }
-                r = Project.DialogSettings.red;
-                g = Project.DialogSettings.green;
-                b = Project.DialogSettings.blue;
+              
             }
             else
             {
@@ -231,7 +232,7 @@ namespace SorterModule
                 throw new Exception();
             }
             List<Tuple<int[], int[], int[], int[], int[],int[]>> res = new List<Tuple<int[],int[], int[], int[], int[], int[]>> { };       
-            if ((Dividers.Count == 0)&&(Project.Font1.AutoGen))
+            if ((Dividers.Count == 0)&&(Project.DialogSettings.AutoGen))
             {
                 GenerateDividers(US, n);
             }

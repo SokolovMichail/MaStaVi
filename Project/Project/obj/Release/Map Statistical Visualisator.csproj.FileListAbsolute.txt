@@ -22,3 +22,32 @@ D:\Gits2\MaStaVi\Project\Project\obj\Release\Project.Properties.Resources.resour
 D:\Gits2\MaStaVi\Project\Project\obj\Release\Map Statistical Visualisator.csproj.GenerateResource.Cache
 D:\Gits2\MaStaVi\Project\Project\obj\Release\Map Statistical Visualisator.exe
 D:\Gits2\MaStaVi\Project\Project\obj\Release\Map Statistical Visualisator.pdb
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\bin\Release\Map Statistical Visualisator.exe.config
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\bin\Release\Map Statistical Visualisator.exe
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\bin\Release\Map Statistical Visualisator.pdb
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\bin\Release\DrawMap.dll
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Release\Map Statistical Visualisator.csprojResolveAssemblyReference.cache
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Release\Map Statistical Visualisator.csproj.ResolveComReference.cache
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Release\Project.DialogSettings.resources
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Release\Project.Font1.resources
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Release\Project.Properties.Resources.resources
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Release\Map Statistical Visualisator.csproj.GenerateResource.Cache
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Release\Map Statistical Visualisator.csproj.CoreCompileInputs.cache
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Release\Map Statistical Visualisator.exe
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Release\Map Statistical Visualisator.pdb
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\bin\Release\DrawMap.pdb
+C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\bin\Release\Map Statistical Visualisator.exe.config
+C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\bin\Release\Map Statistical Visualisator.exe
+C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\bin\Release\Map Statistical Visualisator.pdb
+C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\bin\Release\DrawMap.dll
+C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\bin\Release\DrawMap.pdb
+C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\obj\Release\Map Statistical Visualisator.csprojResolveAssemblyReference.cache
+C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\obj\Release\Map Statistical Visualisator.csproj.ResolveComReference.cache
+C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\obj\Release\Project.DialogSettings.resources
+C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\obj\Release\Project.Font1.resources
+C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\obj\Release\Project.Properties.Resources.resources
+C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\obj\Release\Map Statistical Visualisator.csproj.GenerateResource.Cache
+C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\obj\Release\Map Statistical Visualisator.csproj.CoreCompileInputs.cache
+C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\obj\Release\Map Statistical Visualisator.exe
+C:\Users\Igor\Desktop\MaStaVi-master — копия\Project\Project\obj\Release\Map Statistical Visualisator.pdb
+D:\Gits2\MaStaVi\Project\Project\bin\Release\DrawMap.pdb
