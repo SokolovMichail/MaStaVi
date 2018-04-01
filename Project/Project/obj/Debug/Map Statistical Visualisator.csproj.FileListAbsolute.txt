@@ -43,3 +43,4 @@ D:\Gits2\MaStaVi\Project\Project\bin\Debug\Map Statistical Visualisator.exe.conf
 D:\Gits2\MaStaVi\Project\Project\bin\Debug\Map Statistical Visualisator.exe
 D:\Gits2\MaStaVi\Project\Project\bin\Debug\Map Statistical Visualisator.pdb
 D:\Gits2\MaStaVi\Project\Project\bin\Debug\DrawMap.dll
+D:\Gits2\MaStaVi\Project\Project\bin\Debug\DrawMap.pdb
