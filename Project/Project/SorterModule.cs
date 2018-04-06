@@ -279,9 +279,9 @@ namespace SorterModule
                                 q2[i] = KeyVals.Dict[s1].Y;
                                 int f = Math.Min(GetColorIndex(item1.Value), Project.DialogSettings.red.Length - 1);
                                 q3[i] = 255;
-                                q4[i] = Project.DialogSettings.red[0];
-                                q5[i] = Project.DialogSettings.green[0];
-                                q6[i] = Project.DialogSettings.blue[0];
+                                q4[i] = Project.DialogSettings.red[f];
+                                q5[i] = Project.DialogSettings.green[f];
+                                q6[i] = Project.DialogSettings.blue[f];
                             }
                             else
                             {
