@@ -51,18 +51,21 @@ namespace Project
         {
 			//  try
 			//формат ARGB
-			if (DialogSettings.red.Length > 0 && int.TryParse(DialSet.Drob.Text, out x))
+			if (int.TryParse(DialSet.Drob.Text, out x) && (DialSet.Gradient.Checked || DialSet.Palitra.Checked))
 			{
-				InputModule.InputText.KeyValues PictureMap = InputModule.InputText.EnterValues();
-				Dictionary<string, Dictionary<string, double>> q = InputModule.Input.RunInputModule(PathToFile, PictureMap);
-				List<Tuple<int[], int[], int[], int[], int[], int[]>> lv = SorterModule.Sorter.ToDrawer(q, PictureMap, DialSet.Gradient.Checked);
-				var bitmap = DM.PaintMap(Properties.Resources.map5, lv.First().Item3, lv.First().Item4, lv.First().Item5, lv.First().Item6, lv.First().Item1, lv.First().Item2);
-				MainPicture.Image = bitmap;
-				label1.Text = InputModule.Input.nam;
-				double[] a = SorterModule.Sorter.FormForLegend();
-				Tuple<int[], int[], int[], int[]> ffl = SorterModule.Sorter.FormForLegendColors(DialogSettings.blue.Length == 1);
-				bitmap = DM.PaintLegend(ffl.Item1, ffl.Item2, ffl.Item3, ffl.Item4, a);
-				LegendPicture.Image = bitmap;
+				if (x > 0 && x <= 20)
+				{
+					InputModule.InputText.KeyValues PictureMap = InputModule.InputText.EnterValues();
+					Dictionary<string, Dictionary<string, double>> q = InputModule.Input.RunInputModule(PathToFile, PictureMap);
+					List<Tuple<int[], int[], int[], int[], int[], int[]>> lv = SorterModule.Sorter.ToDrawer(q, PictureMap, DialSet.Gradient.Checked);
+					var bitmap = DM.PaintMap(Properties.Resources.map5, lv.First().Item3, lv.First().Item4, lv.First().Item5, lv.First().Item6, lv.First().Item1, lv.First().Item2);
+					MainPicture.Image = bitmap;
+					label1.Text = InputModule.Input.nam;
+					double[] a = SorterModule.Sorter.FormForLegend();
+					Tuple<int[], int[], int[], int[]> ffl = SorterModule.Sorter.FormForLegendColors(DialSet.Gradient.Checked);
+					bitmap = DM.PaintLegend(ffl.Item1, ffl.Item2, ffl.Item3, ffl.Item4, a);
+					LegendPicture.Image = bitmap;
+				}
 			}
             /*catch (Exception exception)
             {
@@ -73,7 +76,7 @@ namespace Project
 
         private void Save_Click(object sender, EventArgs e)
         {
-            if (MainPicture.Image != null) //если в pictureBox есть изображение
+            if (MainPicture.Image != null && LegendPicture.Image != null) //если в pictureBox есть изображение
             {
                 Bitmap bmp1 = new Bitmap(MainPicture.Image);
                 Bitmap bmp2 = new Bitmap(LegendPicture.Image);

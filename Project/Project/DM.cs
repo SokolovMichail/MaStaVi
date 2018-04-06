@@ -10,6 +10,8 @@ using System.Drawing.Drawing2D;
 using System.Collections;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using static System.Math;
+
 namespace Project
 {
 	public partial class DM
@@ -36,31 +38,10 @@ namespace Project
 			return (map);
 		}
 
-		static int LengthOfLegend(int[] a)
-		{
-			int res = 880;
-			try
-			{
-				
-				if (a.Length < 11)
-					if (a.Length < 5)
-						res = 400;
-					else
-						res = 400 + (a.Length - 5) * 80;
-			}
-			catch
-			{
-				Project.Font1.DialSet.label3.Text = "3";
-			}
-			return (res);
-		}
-
 		static string NumbersOfLegend(double a)
 		{
-			int b = 0;
+			double b = 0;
 			string l = "";
-			try
-			{
 				if (a < 100000)
 					l = a.ToString();
 				else
@@ -68,33 +49,27 @@ namespace Project
 					b = (int)Math.Truncate(a) / 1000;
 					l = b.ToString() + "K";
 				}
-				if (b > 100000)
+				if (b > 1000)
 				{
 					b = b / 1000;
 					l = b.ToString() + "M";
 				}
-			}
-			catch
-			{
-				Project.Font1.DialSet.label3.Text = "4";
-			}
 			return (l);
 		}
 
 		public static Bitmap PaintLegend(int[] a, int[] r, int[] g, int[] b, double[] numbers)
 		{
-			int w = LengthOfLegend(r);  //длина легенды
-			int h = 35;					//высота легенды
-			int n = r.Length;           //кол-во цветов
-			int MyScale = w / n;        //единица длины шкалы
-			Bitmap res = new Bitmap(w, 45);
+			int w = 668;  //длина легенды
+			int h = 33;					//высота легенды
+			int n = int.Parse(Project.Font1.DialSet.Drob.Text);     //кол-во цветов
+			double MyScale = (double) w / (double)n;        //единица длины шкалы
+			Bitmap res = new Bitmap(w, 43);
 			try
 			{
 				
 				Font font = new Font(new FontFamily("Arial"), 9, FontStyle.Regular);
 				SolidBrush brush = new SolidBrush(Color.White);
 				Pen pen = new Pen(brush, 2);
-
 				using (Graphics gr = Graphics.FromImage(res))
 				{
 					//Прямоугольники
@@ -102,16 +77,16 @@ namespace Project
 					for (int i = 0; i < n; i++)
 					{
 						brush.Color = Color.FromArgb(a[i], r[i], g[i], b[i]);
-						gr.FillRectangle(brush, i * MyScale, 0, (i + 1) * MyScale, (h / 3) * 2);
+						gr.FillRectangle(brush, (int)Floor(i * MyScale), 0, (int)Floor((i + 1) * MyScale), (h / 3) * 2);
 					}
 					pen.Color = Color.Black;
 					//Границы прямоугольников
 					for (int i = 0; i <= n; i++)
 					{
-						gr.DrawLine(pen, i * MyScale, 0, i * MyScale, 22);
+						gr.DrawLine(pen, (int)Floor(i * MyScale), 0, (int)Floor(i * MyScale), 22);
 					}
-					gr.DrawLine(pen, 0, 0, MyScale * n, 0);
-					gr.DrawLine(pen, 0, 22, MyScale * n, 22);
+					gr.DrawLine(pen, 0, 0, (int)Floor(MyScale * n), 0);
+					gr.DrawLine(pen, 0, 22, (int)Floor(MyScale * n), 22);
 
 					brush.Color = Color.Black;
 
@@ -120,12 +95,15 @@ namespace Project
 					SizeF tsize = new SizeF();
 					tsize = gr.MeasureString(t, font);
 					gr.DrawString(t, font, brush, new PointF(0, (h / 3) * 2 + 5));
-					for (int i = 1; i <= n; i++)
+					for (int i = 1; i < n; i++)
 					{
 						t = NumbersOfLegend(numbers[i]);
 						tsize = gr.MeasureString(t, font);
-						gr.DrawString(t, font, brush, new PointF(MyScale * i - tsize.Width, (h / 3) * 2 + 5));
+						gr.DrawString(t, font, brush, new PointF((int)Floor(MyScale * i - tsize.Width / 2), (h / 3) * 2 + 5));
 					}
+					t = NumbersOfLegend(numbers[n]);
+					tsize = gr.MeasureString(t, font);
+					gr.DrawString(t, font, brush, new PointF(w - tsize.Width, (h / 3) * 2 + 5));
 				}
 				font.Dispose();
 				brush.Dispose();

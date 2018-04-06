@@ -176,14 +176,14 @@ namespace SorterModule
             return q;
         }
 
-        public static Tuple<int[], int[], int[], int[]> FormForLegendColors(bool isGrad)
+        public static Tuple<int[], int[], int[], int[]> FormForLegendColors(bool isGrad1)
         {
             int[] a = new int[Dividers.Count];
             int[] r = new int[Dividers.Count];
             int[] g = new int[Dividers.Count];
             int[] b = new int[Dividers.Count];
             int stop = Math.Min(Dividers.Count, Project.DialogSettings.red.Length);
-            if (Project.DialogSettings.blue.Length != 1)
+            if (!isGrad1)
             {
                 for (int i = 0; i < (stop); i++)
                 {
@@ -196,7 +196,7 @@ namespace SorterModule
             }
             else
             {
-                for (int i = 0; i < Dividers.Count; i++)
+                for (int i = 0; i < stop; i++)
                 {
                     r[i] = Project.DialogSettings.red[0];
                     g[i] = Project.DialogSettings.green[0];
@@ -279,9 +279,9 @@ namespace SorterModule
                                 q2[i] = KeyVals.Dict[s1].Y;
                                 int f = Math.Min(GetColorIndex(item1.Value), Project.DialogSettings.red.Length - 1);
                                 q3[i] = 255;
-                                q4[i] = Project.DialogSettings.red[f];
-                                q5[i] = Project.DialogSettings.green[f];
-                                q6[i] = Project.DialogSettings.blue[f];
+                                q4[i] = Project.DialogSettings.red[0];
+                                q5[i] = Project.DialogSettings.green[0];
+                                q6[i] = Project.DialogSettings.blue[0];
                             }
                             else
                             {

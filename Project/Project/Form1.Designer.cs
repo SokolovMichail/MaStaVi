@@ -123,7 +123,7 @@
 			this.LegendPicture.Cursor = System.Windows.Forms.Cursors.Default;
 			this.LegendPicture.Location = new System.Drawing.Point(26, 579);
 			this.LegendPicture.Name = "LegendPicture";
-			this.LegendPicture.Size = new System.Drawing.Size(693, 43);
+			this.LegendPicture.Size = new System.Drawing.Size(670, 43);
 			this.LegendPicture.TabIndex = 6;
 			this.LegendPicture.TabStop = false;
 			// 
@@ -210,12 +210,12 @@
         private System.Windows.Forms.Button Picture3D;
         private System.Windows.Forms.Button Save;
         private System.Windows.Forms.Button Settings;
-        private System.Windows.Forms.PictureBox LegendPicture;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox MainPicture;
         private System.Windows.Forms.TrackBar Years;
         private System.Windows.Forms.TextBox YearBox;
         private System.Windows.Forms.PictureBox pictureBox1;
-    }
+		public System.Windows.Forms.PictureBox LegendPicture;
+	}
 }
 

@@ -154,7 +154,6 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox Palitra;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Label label4;
@@ -162,5 +161,6 @@
         public System.Windows.Forms.TextBox Drob;
 		public System.Windows.Forms.Label label3;
 		public System.Windows.Forms.CheckBox Gradient;
+		public System.Windows.Forms.CheckBox Palitra;
 	}
 }
