@@ -71,7 +71,6 @@
 			// 
 			// Picture3D
 			// 
-			this.Picture3D.Enabled = false;
 			this.Picture3D.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.Picture3D.Image = global::Project.Properties.Resources.but3;
 			this.Picture3D.Location = new System.Drawing.Point(412, 7);
@@ -190,7 +189,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.Name = "Font1";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Map Statistical Visualisator (Beta)";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Font1_FormClosing);
 			this.Load += new System.EventHandler(this.Font1_Load);

@@ -19,8 +19,6 @@ namespace Project
 
 			public static Bitmap PaintMap(Bitmap map, int[] a, int[] r, int[] g, int[] b, int[] x, int[] y)
 			{
-			try
-			{
 				Color old = map.GetPixel(x[0], y[0]);
 				Graphics gr = Graphics.FromImage(map);
 					for (int i = 0; i < r.Length; i++)
@@ -28,15 +26,9 @@ namespace Project
 						Point p = new Point(x[i], y[i]);
 						MapFill.FloodFill(gr, p, Color.FromArgb(a[i], r[i], g[i], b[i]), ref map);
 					}
-				gr.Dispose();	
-				
+				gr.Dispose();
+				return (map);
 			}
-			catch
-			{
-				Project.Font1.DialSet.label3.Text = "2";
-			}
-			return (map);
-		}
 
 		static string NumbersOfLegend(double a)
 		{
