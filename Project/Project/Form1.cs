@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
+using static Wpf3DTest.MainWindow;
 
 namespace Project
 {
@@ -26,8 +28,11 @@ namespace Project
 
 		public Font1()
         {
+
+			
             InitializeComponent();
-            AddOwnedForm(DialSet);
+			this.Location = new Point((Screen.PrimaryScreen.Bounds.Width / 2 - Size.Width / 2), Screen.PrimaryScreen.Bounds.Height / 2 - Size.Height / 2);
+			AddOwnedForm(DialSet);
         }
 
 		private void Font1_Load(object sender, EventArgs e)
@@ -57,7 +62,7 @@ namespace Project
 				{
 					InputModule.InputText.KeyValues PictureMap = InputModule.InputText.EnterValues();
 					Dictionary<string, Dictionary<string, double>> q = InputModule.Input.RunInputModule(PathToFile, PictureMap);
-					List<Tuple<int[], int[], int[], int[], int[], int[]>> lv = SorterModule.Sorter.ToDrawer(q, PictureMap, DialSet.Gradient.Checked);
+					List<Tuple<int[], int[], int[], int[], int[], int[], int[]>> lv = SorterModule.Sorter.ToDrawer(q, PictureMap, DialSet.Gradient.Checked);
 					var bitmap = DM.PaintMap(Properties.Resources.map5, lv.First().Item3, lv.First().Item4, lv.First().Item5, lv.First().Item6, lv.First().Item1, lv.First().Item2);
 					MainPicture.Image = bitmap;
 					label1.Text = InputModule.Input.nam;
@@ -146,8 +151,41 @@ namespace Project
 
         private void Picture3D_Click(object sender, EventArgs e)
         {
+			if (int.TryParse(DialSet.Drob.Text, out x) && (DialSet.Gradient.Checked || DialSet.Palitra.Checked))
+			{
+				if (x > 0 && x <= 20)
+				{
+					var a = new Wpf3DTest.MainWindow();
+					InputModule.InputText.KeyValues PictureMap = InputModule.InputText.EnterValues();
+					Dictionary<string, Dictionary<string, double>> q = InputModule.Input.RunInputModule(PathToFile, PictureMap);
+					List<Tuple<int[], int[], int[], int[], int[], int[], int[]>> lv = SorterModule.Sorter.ToDrawer(q, PictureMap, DialSet.Gradient.Checked);
+					a.InitializeComponent();
+					for (int i = 0; i < 85; i++)
+					{
+						a.r[i] = lv.First().Item4[i];
+						a.g[i] = lv.First().Item5[i];
+						a.b[i] = lv.First().Item6[i];
+						a.up[i] = -lv.First().Item7[i] * 0.1;
+					}
+					a.BuildSolid(a.r, a.g, a.b, a.up);
+					a.turn(a.mGeometry);
+					a.RenderSize = new System.Windows.Size(947,471);
+					a.Width = MainPicture.Width + 14;
+					a.Height = MainPicture.Height + 7;
+					a.Left = Location.X + MainPicture.Location.X;
+					a.Top = Location.Y + MainPicture.Location.Y + 31;
+					
 
-        }
+					//Location.X + MainPicture.Location.X, Location.Y + MainPicture.Location.Y, Location.X + MainPicture.Location.X + MainPicture.Width, Location.Y + MainPicture.Location.Y + MainPicture.Height
+					a.Visibility = System.Windows.Visibility.Visible;
+					label1.Text = InputModule.Input.nam;
+					double[] u = SorterModule.Sorter.FormForLegend();
+					Tuple<int[], int[], int[], int[]> ffl = SorterModule.Sorter.FormForLegendColors(DialSet.Gradient.Checked);
+					Bitmap bitmap = DM.PaintLegend(ffl.Item1, ffl.Item2, ffl.Item3, ffl.Item4, u);
+					LegendPicture.Image = bitmap;
+				}
+			}
+		}
 
         private void Settings_Click(object sender, EventArgs e)
         {
@@ -166,6 +204,7 @@ namespace Project
 
         private void Font1_FormClosing(object sender, FormClosingEventArgs e)
         {
+			
             System.Environment.Exit(0);
         }
 

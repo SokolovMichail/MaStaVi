@@ -1,0 +1,39 @@
+﻿<Window x:Class="Wpf3DTest.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="WPF 3D Test" Height="400" Width="600"
+    
+    >
+    <Grid Background="Black" MouseWheel="Grid_MouseWheel"
+		MouseDown="Grid_MouseDown" MouseUp="Grid_MouseUp"
+		MouseMove="Grid_MouseMove">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+		
+		<Button x:Name="button" Grid.Row="0" Content="Reset" Click="Button_Click" Margin="0,0,0,5" />
+
+        <Button x:Name="button2" Grid.Row="2" Content="ScreenShot" Click="button2_Click" />
+
+        <Viewport3D x:Name="viewport" Grid.Row="1">
+			<Viewport3D.Camera>
+                <PerspectiveCamera x:Name="camera" FarPlaneDistance="50" LookDirection="0,0,10"
+					UpDirection="-30,1,0" NearPlaneDistance="0" Position="2,-3,-13" 
+					FieldOfView="45" />
+            </Viewport3D.Camera>
+
+            <ModelVisual3D x:Name="model">
+                <ModelVisual3D.Content>
+                    <Model3DGroup x:Name="group">
+                        <AmbientLight Color="White" />
+                        <DirectionalLight Color="Yellow" Direction="-1,-1,2"/>
+                        <PointLight Color="White" Position="2,2,-4" Range="10"/>
+                        <PointLight Color="Red" Position="2,2,-4" Range="10"/>
+                    </Model3DGroup>
+				</ModelVisual3D.Content>
+			</ModelVisual3D>
+		</Viewport3D>
+    </Grid>
+</Window>

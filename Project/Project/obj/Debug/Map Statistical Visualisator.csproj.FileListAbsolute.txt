@@ -44,3 +44,24 @@ D:\Gits2\MaStaVi\Project\Project\bin\Debug\Map Statistical Visualisator.exe
 D:\Gits2\MaStaVi\Project\Project\bin\Debug\Map Statistical Visualisator.pdb
 D:\Gits2\MaStaVi\Project\Project\bin\Debug\DrawMap.dll
 D:\Gits2\MaStaVi\Project\Project\bin\Debug\DrawMap.pdb
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Debug\Map Statistical Visualisator.csprojResolveAssemblyReference.cache
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Debug\Map Statistical Visualisator.csproj.ResolveComReference.cache
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Debug\Project.DialogSettings.resources
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Debug\Project.Font1.resources
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Debug\Project.Properties.Resources.resources
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Debug\Map Statistical Visualisator.csproj.GenerateResource.Cache
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Debug\Map Statistical Visualisator.csproj.CoreCompileInputs.cache
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Debug\Map Statistical Visualisator.exe
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Debug\Map Statistical Visualisator.pdb
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\bin\Debug\Map Statistical Visualisator.exe.config
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\bin\Debug\Map Statistical Visualisator.exe
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\bin\Debug\Map Statistical Visualisator.pdb
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\bin\Debug\DrawMap.dll
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\bin\Debug\DrawMap.pdb
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Debug\App.baml
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Debug\MainWindow.baml
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Debug\App.g.cs
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Debug\MainWindow.g.cs
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Debug\Map Statistical Visualisator_Content.g.cs
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Debug\Map Statistical Visualisator_MarkupCompile.cache
+C:\Users\Igor\Desktop\MaStaVi-master\Project\Project\obj\Debug\Map Statistical Visualisator.g.resources

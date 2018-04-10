@@ -222,7 +222,7 @@ namespace SorterModule
         }
 
         //Работает. Пропускает неопределенные значения
-        public static List<Tuple<int[], int[], int[], int[], int[], int[]>> ToDrawer(Dictionary<string, Dictionary<string, double>> US, InputModule.InputText.KeyValues KeyVals, bool Gradient)
+        public static List<Tuple<int[], int[], int[], int[], int[], int[], int[]>> ToDrawer(Dictionary<string, Dictionary<string, double>> US, InputModule.InputText.KeyValues KeyVals, bool Gradient)
         {
             // CRstep(Rstart, Rend);
             // CBstep(Bstart, Bend);
@@ -232,7 +232,7 @@ namespace SorterModule
             {
                 throw new Exception();
             }
-            List<Tuple<int[], int[], int[], int[], int[], int[]>> res = new List<Tuple<int[], int[], int[], int[], int[], int[]>> { };
+            List<Tuple<int[], int[], int[], int[], int[], int[], int[]>> res = new List<Tuple<int[], int[], int[], int[], int[], int[], int[]>> { };
             if ((Dividers.Count == 0) && (Project.DialogSettings.AutoGen))
             {
                 GenerateDividers(US, n);
@@ -254,7 +254,8 @@ namespace SorterModule
                 int[] q4 = new int[US[item.Key].Count];
                 int[] q5 = new int[US[item.Key].Count];
                 int[] q6 = new int[US[item.Key].Count];
-                int i = 0;
+				int[] q7 = new int[US[item.Key].Count];
+				int i = 0;
                 foreach (var item1 in item.Value)
                 {
                     if (!Gradient)
@@ -268,8 +269,8 @@ namespace SorterModule
                             q4[i] = Project.DialogSettings.red[f];
                             q5[i] = Project.DialogSettings.green[f];
                             q6[i] = Project.DialogSettings.blue[f];
-
-                        }
+							q7[i] = f;
+                         }
                         else
                         {
                             string s1 = TryFind(item1.Key, KeyVals);
@@ -282,7 +283,8 @@ namespace SorterModule
                                 q4[i] = Project.DialogSettings.red[f];
                                 q5[i] = Project.DialogSettings.green[f];
                                 q6[i] = Project.DialogSettings.blue[f];
-                            }
+								q7[i] = f;
+							}
                             else
                             {
                                 q1[i] = 0;
@@ -305,8 +307,8 @@ namespace SorterModule
                                 q4[i] = Project.DialogSettings.red[0];
                                 q5[i] = Project.DialogSettings.green[0];
                                 q6[i] = Project.DialogSettings.blue[0];
-
-                            }
+								q7[i] = f;
+							}
                             else
                             {
                                 string s1 = TryFind(item1.Key, KeyVals);
@@ -319,7 +321,8 @@ namespace SorterModule
                                     q4[i] = Project.DialogSettings.red[0];
                                     q5[i] = Project.DialogSettings.green[0];
                                     q6[i] = Project.DialogSettings.blue[0];
-                                }
+									q7[i] = f;
+								}
                                 else
                                 {
                                     q1[i] = 0;
@@ -333,7 +336,7 @@ namespace SorterModule
                     }
                     i += 1;
                 }
-                res.Add(new Tuple<int[], int[], int[], int[], int[], int[]>(q1, q2, q3, q4, q5, q6));
+                res.Add(new Tuple<int[], int[], int[], int[], int[], int[], int[]>(q1, q2, q3, q4, q5, q6, q7));
             }
 
             return res;
